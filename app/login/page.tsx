@@ -6,7 +6,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 const PRODUCTION_SITE_URL = "https://instagram-analytics-contlacteos.vercel.app";
 
 function getAuthRedirectUrl() {
-  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\\/+$/, "");
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "");
   const siteUrl =
     configuredSiteUrl ||
     (process.env.NODE_ENV === "production"
