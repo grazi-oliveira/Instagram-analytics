@@ -1,0 +1,3 @@
+const graphVersion=process.env.META_GRAPH_VERSION||"v24.0";
+export function graphUrl(path:string,params?:Record<string,string>){const url=new URL("https://graph.facebook.com/"+graphVersion+"/"+path.replace(/^\//,""));for(const [key,value] of Object.entries(params||{}))url.searchParams.set(key,value);return url;}
+export async function graphGet<T>(path:string,params:Record<string,string>){const response=await fetch(graphUrl(path,params),{cache:"no-store"});const data=await response.json() as T & {error?:{message?:string}};if(!response.ok||data.error)throw new Error(data.error?.message||"Meta Graph API request failed");return data;}
