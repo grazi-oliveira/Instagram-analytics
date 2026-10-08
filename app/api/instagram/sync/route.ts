@@ -2,6 +2,22 @@ import { NextResponse } from "next/server";
 import { createSupabaseServerClient, createSupabaseServiceClient } from "@/lib/supabase/server";
 import { syncInstagramAccount } from "@/lib/instagram-sync";
 
+async function runCronSync(){
+  const service=createSupabaseServiceClient();
+  const accounts=await service.from("instagram_accounts").select("id");
+  if(accounts.error) throw new Error(accounts.error.message);
+  const results=[];
+  for(const account of accounts.data||[]){ try{ results.push({accountId:account.id,...await syncInstagramAccount(account.id)}); } catch(error){ results.push({accountId:account.id,error:error instanceof Error?error.message:"Sync failed"}); } }
+  return results;
+}
+
+export async function GET(request:Request){
+  const secret=process.env.CRON_SECRET;
+  const authorization=request.headers.get("authorization");
+  if(!secret || authorization!==`Bearer ${secret}`) return NextResponse.json({error:"Unauthorized"},{status:401});
+  try{return NextResponse.json({ok:true,results:await runCronSync()});}catch(error){return NextResponse.json({error:error instanceof Error?error.message:"Cron sync failed"},{status:500});}
+}
+
 export async function POST(request:Request){
   try{
     const cronSecret=request.headers.get("x-cron-secret");
@@ -9,15 +25,7 @@ export async function POST(request:Request){
     const body=await request.json().catch(()=>({}));
     const accountId=typeof body.accountId==="string"?body.accountId:null;
     if(isCron){
-      const service=createSupabaseServiceClient();
-      const accounts=await service.from("instagram_accounts").select("id");
-      if(accounts.error) throw new Error(accounts.error.message);
-      const results=[];
-      for(const account of accounts.data||[]){
-        try{ results.push({accountId:account.id,...await syncInstagramAccount(account.id)}); }
-        catch(error){ results.push({accountId:account.id,error:error instanceof Error?error.message:"Sync failed"}); }
-      }
-      return NextResponse.json({ok:true,results});
+      return NextResponse.json({ok:true,results:await runCronSync()});
     }
     const supabase=await createSupabaseServerClient();
     const {data:{user}}=await supabase.auth.getUser();
