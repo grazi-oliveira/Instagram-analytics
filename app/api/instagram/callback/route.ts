@@ -1,0 +1,2 @@
+import { NextResponse } from "next/server";
+export async function GET(request:Request){const url=new URL(request.url),code=url.searchParams.get("code"),state=url.searchParams.get("state"),error=url.searchParams.get("error");if(error)return NextResponse.redirect(new URL("/?instagram_error="+encodeURIComponent(error),request.url));if(!code||!state)return NextResponse.redirect(new URL("/?instagram_error=missing_oauth_parameters",request.url));return NextResponse.redirect(new URL("/?connected=1",request.url));}
