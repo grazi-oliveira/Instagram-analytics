@@ -14,7 +14,7 @@ const T_OPEN = 0, T_V1 = 10, T_COL = 16, T_V2 = 30, T_FLAG = 36, T_V3 = 50,
 const FIN_HIT = 1.9;              // segundos após T_FIN: o golpe final
 
 const LEADER = 'GIOVANA';
-const TEAM = ['OSÉAS', 'CAUÃ', 'PEDRO', 'SARA', 'GIOVANNA', 'MARCOS VINÍCIUS', 'GUETTA'];
+const TEAM = ['OSÉAS', 'KAUÃ', 'PEDRO', 'SARA', 'GIOVANNA', 'MARCOS VINÍCIUS', 'GUETA'];
 const COLS = [
   { n: 'ÍNDIGO', hex: '#4231A6', c: C.indigo, tc: '#FFFFFF' },
   { n: 'AMARELO', hex: '#FFD528', c: C.yellow, tc: C.black },

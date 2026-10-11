@@ -10,7 +10,7 @@ Animação cinematográfica de 84 s em 1920×1080 e 30 fps para o fim do curta d
 | 30–36 s | Atos 1:8 |
 | 36–50 s | Bandeira tremulando com relâmpagos |
 | 50–55 s | Mateus 5:14 |
-| 55–70 s | Equipe: Giovana (líder), Oséas, Cauã, Pedro, Sara, Giovanna, Marcos Vinícius e Guetta |
+| 55–70 s | Equipe: Giovana (líder), Oséas, Kauã, Pedro, Sara, Giovanna, Marcos Vinícius e Gueta |
 | 70–75 s | Romanos 12:11 |
 | 75–84 s | A energia converge, cai um raio e entra a logo final |
 
