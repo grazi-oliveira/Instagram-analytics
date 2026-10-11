@@ -15,20 +15,22 @@ const fs = require('fs');
   await page.waitForFunction(() => window.isReady === true);
   const cfg = await page.evaluate(() => window.CONFIG);
   fs.writeFileSync(path.join(__dirname, 'sfx.json'), JSON.stringify(await page.evaluate(() => window.SFX), null, 1));
-  const shot = () => page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: 1920, height: 1080 } });
+  // JPEG 97% gerado no próprio canvas: ~20x mais rápido que screenshot PNG e visualmente idêntico após o H.264
+  const shot = async () => Buffer.from((await page.evaluate(() =>
+    document.getElementById('c').toDataURL('image/jpeg', .97))).split(',')[1], 'base64');
 
   if (args[0] === '--stills') {
     const dir = args[1]; fs.mkdirSync(dir, { recursive: true });
     for (const t of args.slice(2)) {
       await page.evaluate(t => window.renderFrame(t), parseFloat(t));
-      fs.writeFileSync(path.join(dir, `t${String(t).padStart(5, '0')}.png`), await shot());
+      fs.writeFileSync(path.join(dir, `t${String(t).padStart(5, '0')}.jpg`), await shot());
     }
     await browser.close(); return;
   }
   const out = args[0];
   const t0 = parseFloat(args[1] ?? 0), t1 = parseFloat(args[2] ?? cfg.DUR);
   const f0 = Math.round(t0 * cfg.FPS), f1 = Math.round(t1 * cfg.FPS);
-  const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(cfg.FPS), '-c:v', 'png', '-i', '-',
+  const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(cfg.FPS), '-c:v', 'mjpeg', '-i', '-',
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
     '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
   const start = Date.now();

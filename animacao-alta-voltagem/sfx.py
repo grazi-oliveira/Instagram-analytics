@@ -196,9 +196,93 @@ def fx_air(dur=4.0):
     return stereo(norm(x * e) * .25, 1.0, 19)
 
 
+def fx_braam(dur=4.5):
+    """Metal de trailer: pilha de serras desafinadas em Lá grave com filtro abrindo."""
+    t = t_axis(dur)
+    n = len(t)
+    x = np.zeros(n)
+    for f, g in [(55, 1), (55 * 1.5, .6), (110, .5), (27.5, .8)]:
+        for det in (-.6, -.2, .25, .7):
+            ph = np.cumsum(np.full(n, f * (1 + det / 100))) / SR + rs.random()
+            x += g * (2 * (ph % 1) - 1)
+    x = np.tanh(x * .35)
+    # filtro passa-baixa que abre e fecha (o "wah" do braam), processado em blocos
+    out = np.zeros(n)
+    blk = 2048
+    zi = None
+    for s in range(0, n, blk):
+        tc = s / SR
+        fc = 180 + 2400 * np.exp(-((tc - .35) / .5) ** 2) + 500 * np.exp(-tc * .8)
+        sos = signal.butter(2, min(fc, 8000), fs=SR, output='sos')
+        if zi is None:
+            zi = np.zeros((sos.shape[0], 2))
+        out[s:s + blk], zi = signal.sosfilt(sos, x[s:s + blk], zi=zi)
+    e = env_ad(n, .03, 3.2)
+    return stereo(norm(np.tanh(out * 2.2) * e) * .95, .8, 15)
+
+
+def fx_hit(dur=1.4):
+    t = t_axis(dur)
+    n = len(t)
+    f = 45 + 110 * np.exp(-t * 18)
+    kick = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 4)
+    snap = bp(rs.standard_normal(n), 800, 6000) * np.exp(-t * 25)
+    tail = lp(rs.standard_normal(n), 400) * np.exp(-t * 3) * .3
+    return stereo(norm(np.tanh(2 * (kick + snap * .8 + tail))) * .9, .5, 9)
+
+
+def fx_subdrop(dur=2.5):
+    t = t_axis(dur)
+    f = 70 * np.exp(-t * 1.1) + 24
+    x = np.sin(2 * np.pi * np.cumsum(f) / SR) * env_ad(len(t), .005, 2.5)
+    return stereo(norm(np.tanh(1.5 * x)) * .95, 0)
+
+
+def fx_reverse(dur=1.2):
+    """Prato invertido: cresce e corta seco no impacto."""
+    t = t_axis(dur)
+    n = len(t)
+    x = hp(rs.standard_normal(n), 3000) * np.exp(-t[::-1] * 0)  # ruído claro
+    x = bp(x, 3000, 14000)
+    e = (t / dur) ** 3.5
+    tone = np.sin(2 * np.pi * np.cumsum(np.geomspace(300, 900, n)) / SR) * .2
+    return stereo(norm(x * e + tone * e) * .8, .9, 13)
+
+
+def fx_drone(dur=5.0):
+    t = t_axis(dur)
+    n = len(t)
+    x = sum(np.sin(2 * np.pi * f * t + rs.random() * 6) * g for f, g in [(55, 1), (82.4, .6), (110, .4), (164.8, .25), (220.4, .12)])
+    x *= 1 + .2 * np.sin(2 * np.pi * .3 * t)
+    x += lp(rs.standard_normal(n), 300) * .3
+    e = np.minimum(1, np.minimum(t / 1.5, (dur - t) / 1.2)).clip(0, 1)
+    return stereo(norm(x * e) * .5, 1.0, 25)
+
+
+def fx_rain(dur=14.0):
+    t = t_axis(dur)
+    n = len(t)
+    x = bp(rs.standard_normal(n), 1500, 9000) * .4
+    drops = np.zeros(n)
+    idx = rs.integers(0, n, int(dur * 300))
+    drops[idx] = rs.uniform(-.6, .6, len(idx))
+    x += hp(drops, 2000)
+    e = np.minimum(1, np.minimum(t / 1.5, (dur - t) / 1.5)).clip(0, 1)
+    return stereo(norm(x * e) * .5, 1.0, 27)
+
+
+def fx_rumble(dur=1.6):
+    t = t_axis(dur)
+    x = lp(np.cumsum(rs.standard_normal(len(t))), 120)
+    x = hp(x, 25)
+    e = (t / dur) ** 2
+    return stereo(norm(x * e) * .9, .6, 19)
+
+
 FX = dict(whoosh=fx_whoosh, swoosh=fx_swoosh, impact=fx_impact, zap=fx_zap, crackle=fx_crackle,
           hum=fx_hum, riser=fx_riser, shimmer=fx_shimmer, thunder=fx_thunder, wind=fx_wind,
-          tick=fx_tick, air=fx_air)
+          tick=fx_tick, air=fx_air, braam=fx_braam, hit=fx_hit, subdrop=fx_subdrop,
+          reverse=fx_reverse, drone=fx_drone, rain=fx_rain, rumble=fx_rumble)
 
 
 def reverb(x, secs=1.8, mix=.22):
@@ -213,9 +297,30 @@ def reverb(x, secs=1.8, mix=.22):
     return x * (1 - mix) + out * mix * 1.6
 
 
+def compress(x, thr_db=-22, ratio=4.0, att=.005, rel=.25):
+    """Compressor de mixagem: aproxima ambientes e impactos (sons mais cheios)."""
+    lvl = np.max(np.abs(x), axis=1)
+    lvl = lvl / (np.max(lvl) or 1)
+    # envelope com ataque rápido e liberação lenta (por blocos de 1 ms para ser rápido)
+    blk = SR // 1000
+    nb = len(lvl) // blk
+    pk = lvl[:nb * blk].reshape(nb, blk).max(1)
+    env = np.empty(nb)
+    a_att, a_rel = np.exp(-1 / (att * 1000)), np.exp(-1 / (rel * 1000))
+    e = 0.0
+    for i, v in enumerate(pk):
+        e = a_att * e + (1 - a_att) * v if v > e else a_rel * e + (1 - a_rel) * v
+        env[i] = e
+    thr = 10 ** (thr_db / 20)
+    gain = np.where(env > thr, (env / thr) ** (1 / ratio - 1), 1.0)
+    gain = np.repeat(gain, blk)
+    gain = np.concatenate([gain, np.full(len(x) - len(gain), gain[-1])])
+    return x * gain[:, None]
+
+
 def main():
     events = json.load(open(sys.argv[1]))
-    total = float(sys.argv[3]) if len(sys.argv) > 3 else 84.0
+    total = float(sys.argv[3]) if len(sys.argv) > 3 else 84.5
     mix = np.zeros((int(total * SR) + SR, 2))
     for ev in events:
         fn = FX[ev['type']]
@@ -226,6 +331,7 @@ def main():
         mix[s:e] += y[:e - s]
     mix = reverb(mix)
     mix = mix[:int(total * SR)]
+    mix = compress(mix)
     mix = np.tanh(mix / (np.max(np.abs(mix)) * .7)) * .89  # limitador suave, pico ≈ -1 dBFS
     fade = int(.05 * SR)
     mix[-fade:] *= np.linspace(1, 0, fade)[:, None]
