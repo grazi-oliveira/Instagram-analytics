@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Alta Voltagem: Apresentação da Equipe</title>
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+  :root {
+    --indigo: #4231A6; --yellow: #FFD528; --black: #111118; --white: #FFFFFF;
+    --bg: #07060D; --ink: #F2F0FA; --muted: #A79DF0; --dim: #6E66A8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); }
+  body { font-family: "Inter Display", "Inter", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .s { width: 1920px; height: 1080px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+       background: radial-gradient(ellipse 70% 60% at 50% 60%, rgba(66,49,166,.32), rgba(66,49,166,0) 70%), var(--bg); padding: 110px 140px; }
+  .s:last-child { page-break-after: auto; break-after: auto; }
+  .s::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+       background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); }
+  .s > * { position: relative; z-index: 1; }
+  .kicker { font-size: 22px; font-weight: 600; letter-spacing: 9px; text-transform: uppercase; color: var(--yellow); display: flex; align-items: center; gap: 22px; }
+  .kicker::before { content: ""; width: 60px; height: 2px; background: var(--yellow); }
+  h1 { font-size: 132px; font-weight: 900; letter-spacing: -2px; line-height: .95; }
+  h2 { font-size: 88px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.02; margin-top: 34px; }
+  h3 { font-size: 34px; font-weight: 700; letter-spacing: .5px; margin-bottom: 14px; }
+  p, li { font-size: 31px; line-height: 1.5; font-weight: 300; color: #DCD8F0; }
+  strong { font-weight: 700; color: var(--white); }
+  .y { color: var(--yellow); }
+  .glow { text-shadow: 0 0 28px rgba(255,213,40,.55), 0 0 70px rgba(255,213,40,.25); }
+  .pg { position: absolute; bottom: 60px; right: 140px; font-size: 18px; letter-spacing: 6px; color: var(--dim); font-weight: 600; }
+  .brand { position: absolute; bottom: 60px; left: 140px; font-size: 18px; letter-spacing: 8px; color: var(--dim); font-weight: 700; }
+  .bolt { position: absolute; z-index: 0; opacity: .9; }
+  .cols { display: grid; gap: 70px; margin-top: 60px; }
+  .card { background: rgba(255,255,255,.035); border: 1px solid rgba(167,157,240,.18); border-radius: 26px; padding: 44px 46px; }
+  .card p { font-size: 27px; }
+  .num { font-size: 22px; font-weight: 700; letter-spacing: 6px; color: var(--yellow); margin-bottom: 18px; }
+  .img { border-radius: 24px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.6), 0 0 0 1px rgba(167,157,240,.18); }
+  .img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .full { position: absolute; inset: 0; z-index: 0; }
+  .full img { width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; z-index: 0; }
+  .quote { font-size: 30px; font-style: normal; border-left: 4px solid var(--yellow); padding: 10px 0 10px 34px; color: var(--ink); font-weight: 400; }
+  .say { background: linear-gradient(135deg, rgba(255,213,40,.10), rgba(255,213,40,.03)); border: 1px solid rgba(255,213,40,.35); border-radius: 22px; padding: 34px 40px; }
+  .say .lbl { font-size: 18px; letter-spacing: 6px; font-weight: 700; color: var(--yellow); margin-bottom: 12px; }
+  .say p { font-size: 28px; color: var(--ink); font-weight: 400; }
+  /* versículos */
+  .verse { font-size: 76px; font-weight: 300; line-height: 1.18; letter-spacing: -.5px; color: var(--ink); max-width: 1500px; }
+  .verse b { font-weight: 700; color: var(--yellow); text-shadow: 0 0 30px rgba(255,213,40,.45); }
+  .ref { font-size: 24px; letter-spacing: 10px; font-weight: 600; color: var(--muted); margin-top: 34px; }
+  .chip { display: inline-block; padding: 10px 22px; border-radius: 40px; background: var(--yellow); color: var(--black); font-weight: 800; font-size: 20px; letter-spacing: 6px; }
+  ul { list-style: none; }
+  li { padding-left: 38px; position: relative; margin-bottom: 14px; }
+  li::before { content: ""; position: absolute; left: 0; top: 19px; width: 16px; height: 3px; background: var(--yellow); }
+</style>
+</head>
+<body>
+
+<!-- 1 · CAPA -->
+<section class="s" style="padding:0">
+  <div class="full"><img src="img/final.jpg" alt=""></div>
+  <div class="shade" style="background:linear-gradient(90deg, rgba(7,6,13,.96) 0%, rgba(7,6,13,.85) 38%, rgba(7,6,13,.1) 70%)"></div>
+  <div style="position:absolute; left:140px; top:50%; transform:translateY(-50%); z-index:1; max-width:900px">
+    <div class="kicker">Gincana · Apresentação da equipe</div>
+    <h1 style="margin-top:40px">ALTA<br><span class="y glow">VOLTAGEM</span></h1>
+    <p style="margin-top:40px; font-size:36px">Energia que vem do <strong class="y">Alto</strong>.</p>
+  </div>
+  <div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 2 · MANIFESTO -->
+<section class="s" style="display:flex; flex-direction:column; justify-content:center">
+  <div class="kicker">Quem somos</div>
+  <h2 style="font-size:104px; max-width:1500px">Somos oito pessoas diferentes ligadas na <span class="y glow">mesma corrente</span>.</h2>
+  <p style="margin-top:50px; max-width:1300px; font-size:36px">Cada um com o seu herói, o seu sonho, a sua história. Quando a gente se conecta, a energia sobe. E a fonte dessa energia não está em nós: ela vem do Alto.</p>
+  <div class="pg">02</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 3 · ORIGEM -->
+<section class="s">
+  <div class="kicker">A origem</div>
+  <h2>Uma brincadeira que virou <span class="y">identidade</span>.</h2>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr); gap:44px">
+    <div class="card"><div class="num">01 · A DINÂMICA</div><h3>Um formulário</h3><p>Cada participante respondeu: qual é o seu herói favorito? Qual é o seu sonho? Para onde seria a sua viagem?</p></div>
+    <div class="card"><div class="num">02 · A ESCOLHA</div><h3>Uma líder</h3><p>Escolhemos a líder, <strong>Giovana</strong>. Ela montou a equipe lendo as respostas, uma por uma.</p></div>
+    <div class="card"><div class="num">03 · A FAÍSCA</div><h3>Uma resposta</h3><p>O herói do <strong>Oséas</strong> foi o <strong class="y">Super Choque</strong>. A turma entrou na brincadeira e o nome nasceu: <strong>Alta Voltagem</strong>.</p></div>
+  </div>
+  <p style="margin-top:56px; max-width:1500px">O nome não nasceu de um estudo bíblico, e a gente fala isso com sinceridade. Ele nasceu da alegria de estar junto. Mas, quando abrimos a Bíblia, descobrimos que <strong>luz, poder e fervor</strong> sempre fizeram parte da história de Deus com o seu povo.</p>
+  <div class="pg">03</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 4 · MASCOTE -->
+<section class="s" style="display:grid; grid-template-columns: 1fr 820px; gap:90px; align-items:center">
+  <div>
+    <div class="kicker">O mascote</div>
+    <h2>Por que o <span class="y">Super Choque</span>?</h2>
+    <ul style="margin-top:46px">
+      <li><strong>Um herói jovem e comum</strong>, que descobre um poder e decide usá-lo para proteger os outros.</li>
+      <li><strong>A energia dele não é para se exibir</strong>: é para servir. É assim que a gente quer usar os nossos dons.</li>
+      <li><strong>Olhos acesos</strong>: no mascote, a luz sai do olhar. Quem tem luz enxerga diferente e faz os outros enxergarem.</li>
+    </ul>
+  </div>
+  <div class="img" style="height:820px"><img src="img/olhos.jpg" alt="Close dos olhos do mascote" style="object-position:50% 30%"></div>
+  <div class="pg">04</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 5 · O NOME -->
+<section class="s" style="display:flex; flex-direction:column; justify-content:center">
+  <div class="kicker">O nome</div>
+  <h2 style="font-size:150px; margin-top:30px">ALTA <span class="y glow">VOLTAGEM</span></h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr 1fr; gap:44px; margin-top:70px">
+    <div class="card"><h3 class="y">Voltagem</h3><p>É a força que coloca a energia em movimento. Sem ela, a luz não acende.</p></div>
+    <div class="card"><h3 class="y">Alta</h3><p>Intensidade máxima. A gente não quer uma fé morna: quer uma fé ligada no máximo.</p></div>
+    <div class="card"><h3 class="y">Do Alto</h3><p>O trocadilho é proposital: a nossa energia é <strong>alta</strong> porque vem <strong>do Alto</strong>.</p></div>
+  </div>
+  <div class="pg">05</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 6 · ABERTURA DOS VERSÍCULOS -->
+<section class="s" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center">
+  <div class="kicker">Os versículos</div>
+  <h2 style="font-size:110px; max-width:1500px">Quatro versículos.<br>Uma <span class="y glow">corrente</span>.</h2>
+  <p style="margin-top:44px; max-width:1300px; font-size:34px">Os versículos aparecem no vídeo na ordem de um circuito elétrico: <strong>a luz acende</strong>, <strong>o poder chega</strong>, <strong>a luz se espalha</strong> e <strong>o fervor mantém tudo ligado</strong>.</p>
+  <div style="display:flex; gap:26px; margin-top:60px">
+    <span class="chip">GÊNESIS 1:3</span><span class="chip">ATOS 1:8</span><span class="chip">MATEUS 5:14</span><span class="chip">ROMANOS 12:11</span>
+  </div>
+  <div class="pg">06</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 7 · GÊNESIS -->
+<section class="s">
+  <div class="kicker">Versículo 1 · A luz acende</div>
+  <div style="margin-top:70px">
+    <div class="verse">"Disse Deus: 'Haja <b>luz</b>', e houve <b>luz</b>."</div>
+    <div class="ref">GÊNESIS 1:3 · NVI</div>
+  </div>
+  <div class="cols" style="grid-template-columns:1fr 1fr; gap:50px; margin-top:80px">
+    <div><h3 class="y">Por que escolhemos</h3><p>São as primeiras palavras de Deus registradas na criação, e a primeira coisa que Ele cria é a luz. Antes de qualquer cor, forma ou vida, tudo começa com a luz. A nossa energia também começa n'Ele.</p></div>
+    <div><h3 class="y">No vídeo</h3><p>A palavra <strong>"luz"</strong> explode e inunda a tela de branco. É dessa luz que nascem <strong>as cores da equipe</strong>, porque sem luz não existe cor.</p></div>
+  </div>
+  <div class="say" style="margin-top:50px"><div class="lbl">COMO FALAR</div><p>"Tudo começou com uma frase: haja luz. Antes de sermos equipe, antes de termos cor, Deus acendeu a luz. É por isso que o nosso vídeo nasce dela."</p></div>
+  <div class="pg">07</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 8 · ATOS -->
+<section class="s">
+  <div class="kicker">Versículo 2 · O poder chega</div>
+  <div style="margin-top:70px">
+    <div class="verse">"Mas receberão <b>poder</b> quando o Espírito Santo descer sobre vocês."</div>
+    <div class="ref">ATOS 1:8 · NVI</div>
+  </div>
+  <div class="cols" style="grid-template-columns:1fr 1fr; gap:50px; margin-top:80px">
+    <div><h3 class="y">Por que escolhemos</h3><p>No grego original, "poder" é <strong>dýnamis</strong>, a mesma raiz de "dinâmica" e "dinamite". É o versículo mais "alta voltagem" da Bíblia: um poder que <strong>desce</strong>, vem do Alto e não da nossa força.</p></div>
+    <div><h3 class="y">No vídeo</h3><p>Logo depois dele, <strong>um raio cai do céu e revela a bandeira</strong>. O poder desce e a nossa identidade aparece. A bandeira é o sinal de quem foi enviado.</p></div>
+  </div>
+  <div class="say" style="margin-top:50px"><div class="lbl">COMO FALAR</div><p>"A palavra poder, no grego, é dýnamis, de onde vem dinamite. Esse poder não é nosso: ele desce. Por isso, no vídeo, o raio cai do céu antes da bandeira aparecer."</p></div>
+  <div class="pg">08</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 9 · MATEUS -->
+<section class="s">
+  <div class="kicker">Versículo 3 · A luz se espalha</div>
+  <div style="margin-top:70px">
+    <div class="verse">"Vocês são a <b>luz do mundo</b>."</div>
+    <div class="ref">MATEUS 5:14 · NVI</div>
+  </div>
+  <div class="cols" style="grid-template-columns:1fr 1fr; gap:50px; margin-top:80px">
+    <div><h3 class="y">Por que escolhemos</h3><p>Jesus não diz "você", diz <strong>"vocês"</strong>. A luz é coletiva. E logo depois, no mesmo trecho, Ele lembra que ninguém acende uma candeia para escondê-la: <strong>luz existe para ser vista</strong>.</p></div>
+    <div><h3 class="y">No vídeo</h3><p>O "vocês" puxa <strong>os nomes da equipe</strong>, cada um atingido por um raio. No fim, todos aparecem ligados por energia à líder: uma só rede, uma só luz.</p></div>
+  </div>
+  <div class="say" style="margin-top:50px"><div class="lbl">COMO FALAR</div><p>"Jesus disse vocês, no plural. Ninguém brilha sozinho. Por isso, depois desse versículo, entram os nossos nomes, um por um, até ficarmos todos conectados."</p></div>
+  <div class="pg">09</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 10 · ROMANOS -->
+<section class="s">
+  <div class="kicker">Versículo 4 · O fervor mantém ligado</div>
+  <div style="margin-top:70px">
+    <div class="verse">"Nunca lhes falte o zelo, sejam <b>fervorosos</b> no espírito."</div>
+    <div class="ref">ROMANOS 12:11 · NVI</div>
+  </div>
+  <div class="cols" style="grid-template-columns:1fr 1fr; gap:50px; margin-top:80px">
+    <div><h3 class="y">Por que escolhemos</h3><p>"Fervorosos" vem de uma palavra grega que significa <strong>ferver</strong>. É o oposto de uma fé morna. Se existe uma tradução bíblica de "alta voltagem", é esta: um espírito que não esfria.</p></div>
+    <div><h3 class="y">No vídeo</h3><p>É o último versículo. Depois dele, a tempestade se concentra, tudo apaga, os olhos acendem no escuro e <strong>o raio final traz a logo</strong>. O fervor fecha o circuito.</p></div>
+  </div>
+  <div class="say" style="margin-top:50px"><div class="lbl">COMO FALAR</div><p>"Fervoroso quer dizer fervendo. É isso que Alta Voltagem significa pra nós: uma fé que não esfria. E é com esse versículo que o nosso vídeo termina."</p></div>
+  <div class="pg">10</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 11 · CORES -->
+<section class="s" style="display:grid; grid-template-columns: 1fr 780px; gap:70px; align-items:center; padding-top:80px; padding-bottom:110px">
+  <div>
+    <div class="kicker">Identidade visual</div>
+    <h2 style="font-size:76px">As <span class="y">cores</span> e o que elas dizem</h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:40px">
+      <div class="card" style="padding:26px 30px"><div style="width:54px;height:54px;border-radius:14px;background:var(--indigo);margin-bottom:14px"></div><h3>Índigo <span style="color:var(--dim);font-weight:500;font-size:22px">#4231A6</span></h3><p style="font-size:23px; line-height:1.4">A cor do céu de tempestade, do momento antes do raio. Profundidade e firmeza.</p></div>
+      <div class="card" style="padding:26px 30px"><div style="width:54px;height:54px;border-radius:14px;background:var(--yellow);margin-bottom:14px"></div><h3>Amarelo <span style="color:var(--dim);font-weight:500;font-size:22px">#FFD528</span></h3><p style="font-size:23px; line-height:1.4">A cor do raio e da luz. É a energia da equipe e o destaque de tudo.</p></div>
+      <div class="card" style="padding:26px 30px"><div style="width:54px;height:54px;border-radius:14px;background:var(--black);border:1px solid rgba(255,255,255,.2);margin-bottom:14px"></div><h3>Preto <span style="color:var(--dim);font-weight:500;font-size:22px">#111118</span></h3><p style="font-size:23px; line-height:1.4">O escuro onde a luz se destaca. "A luz brilha nas trevas" (João 1:5).</p></div>
+      <div class="card" style="padding:26px 30px"><div style="width:54px;height:54px;border-radius:14px;background:var(--white);margin-bottom:14px"></div><h3>Branco <span style="color:var(--dim);font-weight:500;font-size:22px">#FFFFFF</span></h3><p style="font-size:23px; line-height:1.4">O clarão do relâmpago. Clareza, verdade e a luz no seu ponto máximo.</p></div>
+    </div>
+  </div>
+  <div class="img" style="height:439px"><img src="img/cores.jpg" alt="Os quatro quadrados de cor do vídeo"></div>
+  <div class="pg">11</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 12 · BANDEIRA -->
+<section class="s" style="padding:0">
+  <div class="full"><img src="img/bandeira.jpg" alt=""></div>
+  <div class="shade" style="background:linear-gradient(0deg, rgba(7,6,13,.97) 0%, rgba(7,6,13,.75) 32%, rgba(7,6,13,0) 60%)"></div>
+  <div style="position:absolute; left:140px; right:140px; bottom:120px; z-index:1">
+    <div class="kicker">A bandeira</div>
+    <h2 style="margin-top:24px">Índigo, raios amarelos e o mascote no centro.</h2>
+    <p style="margin-top:24px; max-width:1500px">A bandeira junta tudo: o céu de tempestade (índigo), a energia (os raios nos cantos) e a nossa identidade (o Super Choque com o nome da equipe). No vídeo, ela é revelada por um raio, logo depois de Atos 1:8.</p>
+  </div>
+  <div class="pg" style="z-index:1">12</div><div class="brand" style="z-index:1">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 13 · EQUIPE -->
+<section class="s" style="text-align:center">
+  <div class="kicker" style="justify-content:center">A equipe</div>
+  <div style="margin-top:80px"><span class="chip">LÍDER</span></div>
+  <div style="font-size:150px; font-weight:900; letter-spacing:8px; margin-top:20px" class="y glow">GIOVANA</div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:34px 30px; margin-top:80px">
+    <div class="card" style="padding:34px"><div style="font-size:44px;font-weight:800;letter-spacing:3px">OSÉAS</div></div>
+    <div class="card" style="padding:34px"><div style="font-size:44px;font-weight:800;letter-spacing:3px">KAUÃ</div></div>
+    <div class="card" style="padding:34px"><div style="font-size:44px;font-weight:800;letter-spacing:3px">PEDRO</div></div>
+    <div class="card" style="padding:34px"><div style="font-size:44px;font-weight:800;letter-spacing:3px">SARA</div></div>
+    <div class="card" style="padding:34px; grid-column: span 1; margin-left:50%"><div style="font-size:44px;font-weight:800;letter-spacing:3px">GIOVANNA</div></div>
+    <div class="card" style="padding:34px; grid-column: span 2; margin:0 18%"><div style="font-size:44px;font-weight:800;letter-spacing:3px">MARCOS VINÍCIUS</div></div>
+    <div class="card" style="padding:34px; margin-right:50%"><div style="font-size:44px;font-weight:800;letter-spacing:3px">GUETA</div></div>
+  </div>
+  <p style="margin-top:60px; font-size:30px">Oito nomes, oito histórias, <strong class="y">uma corrente</strong>.</p>
+  <div class="pg">13</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 14 · O VÍDEO -->
+<section class="s">
+  <div class="kicker">O vídeo de encerramento</div>
+  <h2>47 segundos, sem pausa.</h2>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:30px; margin-top:60px">
+    <div><div class="img" style="height:230px"><img src="img/logo_hero.jpg" alt=""></div><h3 style="margin-top:24px">0–8s · A faísca</h3><p style="font-size:24px">O filme termina no rosto do Super Choque. A câmera sai dos olhos dele, a logo explode e vem o "Haja luz".</p></div>
+    <div><div class="img" style="height:230px"><img src="img/cores.jpg" alt=""></div><h3 style="margin-top:24px">8–18s · As cores</h3><p style="font-size:24px">A luz revela as quatro cores e depois vem o versículo do poder, Atos 1:8.</p></div>
+    <div><div class="img" style="height:230px"><img src="img/bandeira.jpg" alt=""></div><h3 style="margin-top:24px">18–27s · A bandeira</h3><p style="font-size:24px">Um raio revela a bandeira, a câmera mergulha nela e entra o "Vocês são a luz do mundo".</p></div>
+    <div><div class="img" style="height:230px"><img src="img/equipe.jpg" alt=""></div><h3 style="margin-top:24px">27–47s · O time</h3><p style="font-size:24px">Um raio para cada nome, Romanos 12:11, o apagão e a logo final com o golpe mais forte.</p></div>
+  </div>
+  <p style="margin-top:56px; max-width:1600px">Cada versículo entra <strong>rasgando a tela</strong> por cima da cena anterior, sem respiro. A ideia é que o público sinta a energia subir até o último raio.</p>
+  <div class="pg">14</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 15 · COMO APRESENTAR -->
+<section class="s">
+  <div class="kicker">Como apresentar</div>
+  <h2>Roteiro de fala · <span class="y">1 minuto</span></h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr; gap:60px; margin-top:56px">
+    <div>
+      <div class="quote" style="margin-bottom:26px"><strong class="y">Giovana:</strong> "Nós somos a Alta Voltagem. Oito pessoas diferentes, ligadas na mesma corrente."</div>
+      <div class="quote" style="margin-bottom:26px"><strong class="y">Oséas:</strong> "Tudo começou numa dinâmica. Meu herói era o Super Choque, e a turma transformou isso no nosso nome."</div>
+      <div class="quote"><strong class="y">Sara / Giovanna:</strong> "O nome nasceu de uma brincadeira, mas na Bíblia a gente encontrou o sentido: luz, poder e fervor."</div>
+    </div>
+    <div>
+      <div class="quote" style="margin-bottom:26px"><strong class="y">Kauã / Pedro:</strong> "Haja luz: tudo começa com Deus. Receberão poder: a força desce do Alto."</div>
+      <div class="quote" style="margin-bottom:26px"><strong class="y">Marcos Vinícius / Gueta:</strong> "Vocês são a luz do mundo, no plural, porque ninguém brilha sozinho. E fervorosos no espírito, porque a nossa fé não esfria."</div>
+      <div class="quote"><strong class="y">Todos juntos:</strong> "Alta Voltagem: energia que vem do Alto."</div>
+    </div>
+  </div>
+  <div class="pg">15</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 16 · FRASES -->
+<section class="s" style="display:flex; flex-direction:column; justify-content:center">
+  <div class="kicker">Frases da equipe</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:60px">
+    <div class="card"><h2 style="font-size:58px; margin:0">Energia que vem do <span class="y">Alto</span>.</h2><p style="margin-top:18px; font-size:24px">Assinatura principal. Usar no fim de toda fala.</p></div>
+    <div class="card"><h2 style="font-size:58px; margin:0">Ninguém brilha <span class="y">sozinho</span>.</h2><p style="margin-top:18px; font-size:24px">Para falar da equipe (Mateus 5:14).</p></div>
+    <div class="card"><h2 style="font-size:58px; margin:0">Fé ligada no <span class="y">máximo</span>.</h2><p style="margin-top:18px; font-size:24px">Para falar do nome (Romanos 12:11).</p></div>
+    <div class="card"><h2 style="font-size:58px; margin:0">O poder <span class="y">desce</span>, a luz <span class="y">sobe</span>.</h2><p style="margin-top:18px; font-size:24px">Para falar dos versículos (Atos 1:8 e Gênesis 1:3).</p></div>
+  </div>
+  <div class="pg">16</div><div class="brand">ALTA VOLTAGEM</div>
+</section>
+
+<!-- 17 · ENCERRAMENTO -->
+<section class="s" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center">
+  <img src="img/logo_s.png" alt="Logo Alta Voltagem" style="width:620px; filter: drop-shadow(0 0 60px rgba(255,213,40,.35)) drop-shadow(0 0 140px rgba(66,49,166,.7))">
+  <p style="margin-top:30px; font-size:40px; font-weight:400">Energia que vem do <strong class="y">Alto</strong>.</p>
+  <div class="ref" style="margin-top:22px; letter-spacing:5px; font-size:22px">GIOVANA · OSÉAS · KAUÃ · PEDRO · SARA · GIOVANNA · MARCOS VINÍCIUS · GUETA</div>
+</section>
+
+</body>
+</html>
